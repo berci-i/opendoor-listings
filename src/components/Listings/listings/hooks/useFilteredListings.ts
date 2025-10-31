@@ -1,22 +1,33 @@
+import type {Listing} from "../components/ListingCard/listing.types";
 import {useAppSelector} from "@/app/hooks";
 import {useGetListingsQuery} from "@/api/listingsApi";
 import {useMemo} from "react";
+
+function filterByStatus(listing: Listing, statusFilter: string) {
+  // Consider listings without zillowData as active
+  if (!listing.zillowData) return statusFilter === "active";
+  return statusFilter === "active" ? !listing.zillowData.dateSold : !!listing.zillowData.dateSold;
+}
+
+function filterBySearch(listing: Listing, search: string) {
+  return listing.address?.formattedAddress?.toLowerCase().includes(search.toLowerCase());
+}
 
 export const useFilteredListings = () => {
   const {data: listings} = useGetListingsQuery();
   const {search, sortOrder, statusFilter} = useAppSelector((state) => state.listings);
   return useMemo(() => {
-      if (!listings?.deals) return [];
-      let deals = listings.deals ?? [];
-  
-      if (statusFilter !== "all") deals = deals.filter((l: any) => l.status === statusFilter);
-      if (Boolean(search))
-        deals = deals.filter((l: any) =>
-          l.address?.formattedAddress?.toLowerCase().includes(search.toLowerCase())
-        );
-  
-      if (sortOrder === "oldest") return [...deals].reverse();
-  
-      return deals;
-    }, [listings, search, sortOrder, statusFilter]);
-}
+    if (!listings?.deals) return [];
+
+    let deals = listings.deals;
+
+    if (statusFilter !== "all")
+      deals = deals.filter((l: Listing) => filterByStatus(l, statusFilter));
+
+    if (search) deals = deals.filter((l: Listing) => filterBySearch(l, search));
+
+    if (sortOrder === "oldest") return [...deals].reverse();
+
+    return deals;
+  }, [listings, search, sortOrder, statusFilter]);
+};

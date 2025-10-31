@@ -1,25 +1,38 @@
 .sort-filter {
   display: flex;
   gap: 1rem;
+  margin-bottom: 0.5rem;
 
-  select {
-    border: 2px solid #333;
-    border-radius: 6px;
-    padding: 0.2rem;
-    font-size: 0.95rem;
-    background-color: #fff;
-    color: #000;
-    appearance: none;
-    cursor: pointer;
-    transition:
-      border-color 0.2s,
-      box-shadow 0.2s;
-    min-width: 5.5rem;
+  .select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: clamp(120px, 35%, 180px);
 
-    &:focus {
-      border-color: #1890ff;
-      box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
-      outline: none;
+    select {
+      width: 100%;
+      border: 1px solid #333;
+      border-radius: 6px;
+      padding: 0.5rem 2rem 0.5rem 0.75rem; // extra right padding for icon
+      font-size: 0.95rem;
+      appearance: none;
+      cursor: pointer;
+      background-color: #fff;
+
+      &:focus {
+        border-color: #1890ff;
+        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+        outline: none;
+      }
+    }
+
+    .dropdown-icon {
+      position: absolute;
+      right: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none; // so clicks pass through to the select
+      color: #333;
+      font-size: 1rem;
     }
   }
 }
