@@ -1,3 +1,5 @@
+import "./App.scss";
+
 import {useEffect, useState} from "react";
 
 import {Listings} from "./components/Listings";

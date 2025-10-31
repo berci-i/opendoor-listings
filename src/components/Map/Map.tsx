@@ -6,7 +6,7 @@ import MapMock from "@/assets/MapMock.png";
 export const Map = () => {
   return (
     <div className="map">
-      <img src={MapMock} alt="Map" style={{height: "100vh", borderRadius: "8px"}} />
+      <img src={MapMock} alt="Map" style={{minHeight: "100vh", width: "100%"}} />
     </div>
   );
 };

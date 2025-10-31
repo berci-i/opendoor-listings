@@ -1,10 +1,15 @@
 .listings-container {
   max-height: calc(100vh - 3rem);
   overflow-y: auto;
+  width: 600px;
   .listing-container-spacer {
     padding: 12px 2rem;
   }
 
+  @media screen and (max-width: 1200px) {
+    width: auto;
+    flex: 1;
+  }
   @media screen and (max-width: 768px) {
     margin: 0 8%;
   }
