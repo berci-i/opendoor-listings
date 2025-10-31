@@ -2,7 +2,7 @@
   max-height: calc(100vh - 3rem);
   overflow-y: auto;
   .listing-container-spacer {
-    padding: 12px 48px;
+    padding: 12px 2rem;
   }
 
   @media screen and (max-width: 768px) {
@@ -19,4 +19,8 @@ h4 {
 .litings-found {
   color: #555;
   margin-bottom: 2rem;
+}
+
+.loader-spacer {
+  margin-top: -10vh;
 }
