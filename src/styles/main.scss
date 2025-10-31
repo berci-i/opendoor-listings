@@ -4,6 +4,28 @@ body {
 
 .main-section {
   display: flex;
+  > * {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.toggle-view-btn {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  margin: 1rem 0;
+
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 .flex {

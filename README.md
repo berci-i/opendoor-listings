@@ -1,73 +1,90 @@
-# React + TypeScript + Vite
+# Opendoor Listings Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based application for browsing and interacting with property listings. This project is a frontend-focused implementation inspired by Opendoor’s listings page.
 
-Currently, two official plugins are available:
+## Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Browse Listings:** View all available properties from a dedicated API endpoint.
+- **Property Sorting & Search:** Sort by newest/oldest, filter by listing status (`sold` / `active`), and search by property address.
+- **Banner Display:** Shows the “Make your strongest offer when you buy with Opendoor” banner after the first 2 listings.
+- **Responsive Design:** Optimized for mobile and desktop layouts.
+- **Image Handling:** All listing images use a fallback if the original image cannot be loaded.
+- **Optional Map Integration:** Static map mock included; real map integration possible via Mapbox (code scaffolded but disabled).
 
-## React Compiler
+## Technologies Used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React & React Hooks**
+- **TypeScript**
+- **Vite**
+- **Redux Toolkit & Redux Toolkit Query**
+- **SCSS for styling**
+- **Optional Mapbox GL JS integration**
+- **Responsive design techniques**
 
-## Expanding the ESLint configuration
+## Project Decisions & Notes
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Images:** Many external links point to Google Drive folders, Dropbox folders, or property pages rather than direct image URLs. Because these require backend logic or authentication to extract image URLs, they cannot be reliably displayed in the frontend. As a result, all invalid or unsupported image links fall back to a placeholder image. While testing all the 500 properties was imposible, from the tests it would look like none of the listings had valid images on `listing.userData?.linkToPhotos` prop that could be redered directly, safe and reliable on FE side. 
+- **Map:** A static map image is included. The scaffold for a live Mapbox map exists in the code but was not fully implemented due to time constraints.
+- **Time:** The project was implemented under a tight 24-hour deadline, with roughly 6-7 hours of actual development.
+- **Design:** Efforts were made to approximate the Opendoor layout, with priority given to functionality and responsiveness over pixel-perfect styling.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Installation & Setup
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1. **Clone the repository**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone git@github.com:berci-i/opendoor-listings.git
+cd opendoor-listings
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. **Install dependencies**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+# or
+yarn install
 ```
+
+3. **Start the development server**
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser to view the app.
+
+## API Endpoint
+
+Listings data is fetched from:
+
+```
+https://u2oyhiwlmc.execute-api.us-east-1.amazonaws.com/production/get-listings
+```
+
+This endpoint is configured via `src/api/listingsApi.ts` using Redux Toolkit Query.
+
+## Folder Structure Highlights
+
+- `src/components` – React components (cards, banner, map, etc.)
+- `src/hooks` – Custom hooks (e.g., `useCardPhotos` for handling listing images)
+- `src/api` – API calls using Redux Toolkit Query
+- `src/assets` – Static assets (images, map mock)
+- `src/styles` – SCSS files for component styling
+
+## Known Issues / Limitations
+
+- Many listing images from external sources do not load. This includes links to Google Drive folders, Dropbox folders, or property pages. A fallback image is used in all these cases.
+- Map integration is not live; currently uses a static placeholder.
+- Styling is functional but not fully pixel-perfect due to time constraints.
+
+## Optional Enhancements (Future Work)
+
+- Embed a fully interactive Mapbox map with markers for listings.
+- Implement a carousel for multiple listing photos.
+- Improve styling for a closer match to Opendoor’s production layout.
+
+## License
+
+All rights reserved. This is a personal project for portfolio and assessment purposes.

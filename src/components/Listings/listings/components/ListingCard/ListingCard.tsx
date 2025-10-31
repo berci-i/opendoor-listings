@@ -6,7 +6,6 @@ import {useCardPhotos} from "../../hooks/useCardPhotos";
 
 export const ListingCard = ({listing}: ListingCardProps) => {
   const imageSrc = useCardPhotos(listing.userData?.linkToPhotos);
-  if (listing.userData?.linkToPhotos) console.log(listing);
   const price = listing.userData?.askingPrice;
   const bds = listing.zillowData?.bedrooms ?? "-";
   const ba = listing.zillowData?.bathrooms ?? "-";
