@@ -15,12 +15,7 @@ export const useFilteredListings = () => {
           l.address?.formattedAddress?.toLowerCase().includes(search.toLowerCase())
         );
   
-      if (sortOrder === "oldest")
-        try {
-          return [...deals].reverse();
-        } catch (e) {
-          console.error("Error reversing deals:", e);
-        }
+      if (sortOrder === "oldest") return [...deals].reverse();
   
       return deals;
     }, [listings, search, sortOrder, statusFilter]);

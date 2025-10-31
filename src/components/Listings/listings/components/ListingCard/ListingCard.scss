@@ -7,13 +7,15 @@
     transform 0.2s ease,
     box-shadow 0.2s ease;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
+
+  @media screen and (max-width: 992px) {
+    flex-direction: column; 
+  }
 
   .image-wrapper {
     width: 100%;
-    height: 220px;
     overflow: hidden;
     border-radius: 1rem;
 
@@ -27,7 +29,7 @@
 
   .info {
     width: 100%;
-    padding: 0.5rem 0;
+    padding: 0.5rem 0 0.5rem 1rem;
 
     .price-row {
       display: flex;

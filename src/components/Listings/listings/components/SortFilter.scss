@@ -1,0 +1,25 @@
+.sort-filter {
+  display: flex;
+  gap: 1rem;
+
+  select {
+    border: 2px solid #333;
+    border-radius: 6px;
+    padding: 0.2rem;
+    font-size: 0.95rem;
+    background-color: #fff;
+    color: #000;
+    appearance: none;
+    cursor: pointer;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+    min-width: 5.5rem;
+
+    &:focus {
+      border-color: #1890ff;
+      box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+      outline: none;
+    }
+  }
+}

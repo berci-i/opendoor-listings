@@ -5,6 +5,7 @@ import {
   type SortOrder,
   type StatusFilter,
 } from "@/features/listings/listingsSlice";
+import "./SortFilter.scss";
 
 export const SortFilter = () => {
   const dispatch = useAppDispatch();
