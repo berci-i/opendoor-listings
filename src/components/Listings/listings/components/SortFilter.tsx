@@ -1,12 +1,14 @@
-import {useAppDispatch, useAppSelector} from "../../../../app/hooks";
-import {setSortOrder, setStatusFilter, type SortOrder, type StatusFilter} from "../../../../features/listings/listingsSlice";
-
+import {useAppDispatch, useAppSelector} from "@/app/hooks";
+import {
+  setSortOrder,
+  setStatusFilter,
+  type SortOrder,
+  type StatusFilter,
+} from "@/features/listings/listingsSlice";
 
 export const SortFilter = () => {
   const dispatch = useAppDispatch();
-  const { sortOrder, statusFilter } = useAppSelector(
-    (state) => state.listings
-  );
+  const {sortOrder, statusFilter} = useAppSelector((state) => state.listings);
 
   return (
     <div className="sort-filter">
@@ -20,9 +22,7 @@ export const SortFilter = () => {
 
       <select
         value={statusFilter}
-        onChange={(e) =>
-          dispatch(setStatusFilter(e.target.value as StatusFilter))
-        }
+        onChange={(e) => dispatch(setStatusFilter(e.target.value as StatusFilter))}
       >
         <option value="all">All</option>
         <option value="active">Active</option>
@@ -31,4 +31,3 @@ export const SortFilter = () => {
     </div>
   );
 };
-

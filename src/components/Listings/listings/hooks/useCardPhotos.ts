@@ -2,7 +2,8 @@ import {useMemo} from "react";
 
 export const useCardPhotos = (link?: string | null): string => {
   return useMemo(() => {
-    if (!link) return "https://via.placeholder.com/400x250";
+    if (!link)
+      return "https://t4.ftcdn.net/jpg/06/71/92/37/360_F_671923740_x0zOL3OIuUAnSF6sr7PuznCI5bQFKhI0.jpg";
 
     // Google Drive file
     const matchDriveFile = link.match(/\/file\/d\/([^/]+)/);
@@ -13,6 +14,6 @@ export const useCardPhotos = (link?: string | null): string => {
       return link.replace("www.dropbox.com", "dl.dropboxusercontent.com").replace("?dl=0", "");
 
     // Google Photos, InvestorLift, Zillow, etc. → fallback
-    return "https://via.placeholder.com/400x250";
+    return "https://t4.ftcdn.net/jpg/06/71/92/37/360_F_671923740_x0zOL3OIuUAnSF6sr7PuznCI5bQFKhI0.jpg";
   }, [link]);
 };

@@ -1,6 +1,8 @@
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import "./SearchBar.scss";
 
-import { setSearch } from "../../features/listings/listingsSlice";
+import {useAppDispatch, useAppSelector} from "@/app/hooks";
+
+import {setSearch} from "@/features/listings/listingsSlice";
 
 export const SearchBar = () => {
   const dispatch = useAppDispatch();
@@ -17,5 +19,3 @@ export const SearchBar = () => {
     </div>
   );
 };
-
-
