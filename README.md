@@ -26,7 +26,7 @@ A React-based application for browsing and interacting with property listings. T
 - **Images:** Many external links point to Google Drive folders, Dropbox folders, or property pages rather than direct image URLs. Because these require backend logic or authentication to extract image URLs, they cannot be reliably displayed in the frontend. As a result, all invalid or unsupported image links fall back to a placeholder image. While testing all the 500 properties was imposible, from the tests it would look like none of the listings had valid images on `listing.userData?.linkToPhotos` prop that could be redered directly, safe and reliable on FE side. 
 - **Map:** A static map image is included. The scaffold for a live Mapbox map exists in the code but was not fully implemented due to time constraints.
 - **Time:** The project was implemented under a tight 24-hour deadline, with roughly 6-7 hours of actual development.
-- **Design:** Efforts were made to approximate the Opendoor layout, with priority given to functionality and responsiveness over pixel-perfect styling.
+- **Design:** Efforts were made to approximate the Opendoor layout, prioritizing functionality and responsiveness over pixel-perfect styling. On my device, Opendoor Tampa looks slightly different than the reference screenshot, but I primarily took inspiration from the screenshot and relied on the actual page only when in doubt.
 
 ## Installation & Setup
 

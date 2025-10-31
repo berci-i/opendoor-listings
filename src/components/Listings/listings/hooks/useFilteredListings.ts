@@ -14,9 +14,9 @@ function filterBySearch(listing: Listing, search: string) {
 }
 
 export const useFilteredListings = () => {
-  const {data: listings} = useGetListingsQuery();
+  const {data: listings, isLoading} = useGetListingsQuery();
   const {search, sortOrder, statusFilter} = useAppSelector((state) => state.listings);
-  return useMemo(() => {
+  const filteredListings = useMemo(() => {
     if (!listings?.deals) return [];
 
     let deals = listings.deals;
@@ -30,4 +30,5 @@ export const useFilteredListings = () => {
 
     return deals;
   }, [listings, search, sortOrder, statusFilter]);
+  return {filteredListings, isLoading};
 };
